@@ -1,6 +1,6 @@
 # Falcon Laser Levelers - Precision Agriculture Website
 
- state-of-the-art, interactive website for Falcon Laser Levelers, showcasing cutting-edge laser leveling technology for precision agriculture.
+A state-of-the-art, interactive website for Falcon Laser Levelers, showcasing cutting-edge laser leveling technology for precision agriculture.
 
 ## 🚀 Features
 
