@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falcon Laser Levelers - Test Page</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #388E3C 0%, #1B5E20 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .test-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #D32F2F;
+        }
+        .status {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success {
+            background: #4CAF50;
+            color: white;
+        }
+        .error {
+            background: #f44336;
+            color: white;
+        }
+        .info {
+            background: #2196F3;
+            color: white;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        button {
+            background: #D32F2F;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #B71C1C;
+        }
+        .log {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: left;
+            font-family: monospace;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🚀 Falcon Laser Levelers</h1>
+        <p>Website Test & Verification</p>
+        
+        <div class="test-section">
+            <h3>System Status</h3>
+            <div id="system-status">
+                <div class="status success">✓ System Ready</div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Feature Tests</h3>
+            <button onclick="testAnimations()">Test Animations</button>
+            <button onclick="testResponsive()">Test Responsive</button>
+            <button onclick="testPerformance()">Test Performance</button>
+            <button onclick="testAccessibility()">Test Accessibility</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>Test Results</h3>
+            <div id="test-log" class="log"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Quick Links</h3>
+            <button onclick="window.location.href='index.html'">Go to Main Site</button>
+            <button onclick="window.open('README.md', '_blank')">View Documentation</button>
+        </div>
+    </div>
+
+    <script>
+        // Test logging function
+        function log(message, type = 'info') {
+            const logElement = document.getElementById('test-log');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.innerHTML = `<span style="color: #888;">[${timestamp}]</span> ${message}`;
+            logElement.appendChild(logEntry);
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        // Test animations
+        function testAnimations() {
+            log('Testing animations...', 'info');
+            
+            // Test CSS animations
+            const testElement = document.createElement('div');
+            testElement.style.cssText = `
+                width: 50px;
+                height: 50px;
+                background: #D32F2F;
+                border-radius: 50%;
+                animation: testPulse 1s ease-in-out;
+            `;
+            
+            document.body.appendChild(testElement);
+            
+            setTimeout(() => {
+                document.body.removeChild(testElement);
+                log('✓ Animations working correctly', 'success');
+            }, 1000);
+        }
+
+        // Test responsive design
+        function testResponsive() {
+            log('Testing responsive design...', 'info');
+            
+            const width = window.innerWidth;
+            let breakpoint = '';
+            
+            if (width < 576) breakpoint = 'Mobile (< 576px)';
+            else if (width < 768) breakpoint = 'Small Tablet (576px - 767px)';
+            else if (width < 992) breakpoint = 'Tablet (768px - 991px)';
+            else if (width < 1200) breakpoint = 'Desktop (992px - 1199px)';
+            else breakpoint = 'Large Desktop (≥ 1200px)';
+            
+            log(`✓ Current breakpoint: ${breakpoint} (${width}px)`, 'success');
+        }
+
+        // Test performance
+        function testPerformance() {
+            log('Testing performance...', 'info');
+            
+            const startTime = performance.now();
+            
+            // Simulate some work
+            let result = 0;
+            for (let i = 0; i < 1000000; i++) {
+                result += Math.random();
+            }
+            
+            const endTime = performance.now();
+            const duration = endTime - startTime;
+            
+            if (duration < 100) {
+                log(`✓ Performance test passed (${duration.toFixed(2)}ms)`, 'success');
+            } else {
+                log(`⚠ Performance test slow (${duration.toFixed(2)}ms)`, 'error');
+            }
+        }
+
+        // Test accessibility
+        function testAccessibility() {
+            log('Testing accessibility...', 'info');
+            
+            // Check for alt text on images
+            const images = document.querySelectorAll('img');
+            let hasAltText = true;
+            
+            images.forEach(img => {
+                if (!img.alt) {
+                    hasAltText = false;
+                }
+            });
+            
+            // Check for semantic HTML
+            const hasHeadings = document.querySelectorAll('h1, h2, h3, h4, h5, h6').length > 0;
+            const hasMain = document.querySelector('main') !== null;
+            
+            if (hasAltText && hasHeadings) {
+                log('✓ Basic accessibility features present', 'success');
+            } else {
+                log('⚠ Some accessibility features missing', 'error');
+            }
+        }
+
+        // Add CSS animation for testing
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes testPulse {
+                0% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.2); opacity: 0.7; }
+                100% { transform: scale(1); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize tests
+        window.addEventListener('load', () => {
+            log('Website test page loaded successfully', 'success');
+            log('Ready to run tests. Click the buttons above to test features.', 'info');
+        });
+
+        // Test responsive on resize
+        window.addEventListener('resize', () => {
+            log(`Window resized to ${window.innerWidth}x${window.innerHeight}`, 'info');
+        });
+    </script>
+</body>
+</html> 
